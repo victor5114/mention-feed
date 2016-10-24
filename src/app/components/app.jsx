@@ -16,7 +16,7 @@ const App = () =>
     <div className="container">
       <div className="container-fluid">
         <div className="page-header">
-          <h1>Bouncing Balls Project</h1>
+          <h1>Mention dev test</h1>
         </div>
       </div>
     </div>
