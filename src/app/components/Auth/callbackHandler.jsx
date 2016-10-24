@@ -8,26 +8,30 @@ class CallbackHandler extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
     getToken: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
   };
 
   constructor(props) {
     super(props);
     this.callbackError = null;
-    console.log(props.location.query);
   }
 
   componentWillMount() {
     if (!this.props.location.query.code || !isString(this.props.location.query.code)) {
       this.callbackError = 'Error callback. Please retry to connect';
-      console.error(this.callbackError);
     }
 
     this.code = this.props.location.query.code;
   }
 
   componentDidMount() {
-    console.log(this.code);
     this.props.getToken(this.code);
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.errorMessage !== '') {
+      this.callbackError = nextProps.errorMessage;
+    }
   }
 
   render() {
@@ -54,8 +58,10 @@ class CallbackHandler extends Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  console.log('MAPSTATE');
+  console.log(state);
+  return { errorMessage: state.auth.error };
 }
 
 export default connect(mapStateToProps, { getToken })(CallbackHandler);
