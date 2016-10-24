@@ -44,3 +44,18 @@ You will not be evaluated on different browsers for this test. Optimize your cod
 
 
 GLHF
+
+
+
+
+
+
+
+
+
+
+
+###
+
+launch Chrome with CORS disabled under OSX :
+open -n -a /Applications/Google\ Chrome.app --args --user-data-dir="/tmp/chrome_dev_session" --disable-web-security

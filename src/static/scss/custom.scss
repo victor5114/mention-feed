@@ -53,6 +53,11 @@ body.mobile {
     }
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .list-group-item li {
   display: flex;
   align-items: center;

@@ -1,5 +1,8 @@
-export const ACTION_NAME = 'ACTION_NAME';
-export const ACTION_NAME_2 = 'ACTION_NAME_2';
+/* eslint camelcase: "off" */
+import axios from 'axios';
+import { browserHistory } from 'react-router';
+import config from '../config';
+import { AUTH_USER } from './types';
 
 /**
 * @function fn
@@ -7,4 +10,25 @@ export const ACTION_NAME_2 = 'ACTION_NAME_2';
 * @param ...args - ...
 * @return {Object} - ...
 */
-// Add action here
+export function getToken(code) {
+  return dispatch => {
+    const { oauthUrl, client_id, client_secret, redirect_uri } = config;
+    const params = {
+      client_id,
+      client_secret,
+      redirect_uri,
+      code,
+      response_type: 'token',
+      grant_type: 'authorization_code',
+    };
+
+    axios.post(`${oauthUrl}`, params)
+      .then(response => {
+        dispatch({ type: AUTH_USER });
+        browserHistory.push('/feed');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+}
