@@ -128,8 +128,8 @@ export function fetchFeedList(alertId) {
       } else {
         dispatch(authError('Error retrieving mentions info'));
       }
-    }).catch(err => {
-      console.log(err);
+    }).catch(() => {
+      dispatch(authError('Error retrieving mentions info'));
     });
   };
 }

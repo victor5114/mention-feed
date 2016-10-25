@@ -1,61 +1,65 @@
-The goal of this exercise is to create a minimal mentions feed, similar to the one we currently use in Mention.  
-You will be evaluated on your abilities to use a REST API, promises, json and react.
+# mention-feed
+Here's my solution for the Mention coding challenge. Please the following instructions
+to run the project locally. (Not deployed yet).
 
-### Objectives:
- * Send an API call
- * Display the results using React components
+I started this project from a redux-starter
+simple app that I previsouly used for different project. It makes use of Babel, Redux, Webpack
+for the main part. It also contains a simple test suite that handles both e2e tests with Protractor and unit test with JSDOM.
 
-### In-depth:
+Hope you'll enjoy it
 
-##### 1) API CALL:
-Write an API Call (using the technology of your choice):  
-`https://web.mention.net/api/accounts/{account_id}/alerts/{alert_id}/mentions`
+## Install and Set up
+### Prerequisite
+I assume you already have a node.js environment set up locally. I personally use [NVM](https://github.com/creationix/nvm) to make sure I can switch easily
+from one Node environment to another.
 
-Parameters:
- * `account_id = 661072_53ca2jsh01c88c4wwkc0wockckk0w4440o4o0w8wkkgco4o888`  
- * `alert_id = 1214654`  
-
-Query string:
- * `access_token = ZDdmNDVmYzU1NWZkMDkwMDc4YjBjMzYyZDk2MDI3NGVlNmFmNTJkZDU5MzBhYWRiZGZmNzAxOGM1NDkzNDYxYQ`
-
-Warning: access_token must be in the query string.  
-More information here:
- * [Doc Authentification](https://dev.mention.com/current/src/index.html#in-the-query-string)
- * [Doc Endpoint](https://dev.mention.com/current/src/account/alert/mention/GetMentions.html)
+### Environment
+#### Development
+The application has been built under Node `v4.4` + NPM `v3.10.2`
 
 
-> Nb: You will have to activate Same Domain Origin Policy on your browser:  
-> Firefox: https://addons.mozilla.org/fr/firefox/addon/cors-everywhere/  
-> Chrome: http://stackoverflow.com/questions/3102819/disable-same-origin-policy-in-chrome
+1. Pull the repository.
+2. Run `npm install`. This will install the development dependencies.
+3. Run `npm run dev`. This will start a webpack server on [http://127.0.0.1:8888](http://127.0.0.1:8888) by default but you can override WEBPACK_SERVER_PORT.
+Hot reload of all src files inside `/src` is activated.
+4. Enjoy
 
-##### 2) FEED REACT:
+#### Build (Optionnal)
 
-Display some mentions from the API using at least two components:  
+> Ideally we would want to test our compiled files to make sure everything has beend correcly
+> bundled up. In this particular case, we use a static Node server that serves files through
+> one basic endpoint. However, if PORT is different than 8888, then the callback redirect_uri
+> won't work as expected, so make sure you start the server on port 8888.
+> (.env file is configured)
 
- * `Feed` will be the parent component and will include a list of `FeedItem`.  
- * `FeedItem` will be the child component and will display a mention.
+1. Run `npm run fakeserve`. This will build the production files and start a static server on previously specified port and address.
+2. Browse the `http://IP:PORT` page
+3. Make sure app is displayed nominally.
 
-Nb: `React`, `ReactDOM` and `Babel` are included in this archive.  
-Feel free to use some CSS for styling purpose.  
-You will not be evaluated on different browsers for this test. Optimize your code for one browser and let us know which one to use for our review.
+#### Testing
+No tests were added has although test suite is ready for both e2e and unit/components testing. It's part of main improvement. (See the final section below)
+Test suite tools :
+[JSDOM](https://github.com/tmpvar/jsdom) / [Mocha](https://mochajs.org/) / [Chai](http://chaijs.com/)
+JSDOM is a Javascript implementation of the DOM and has pretty much all HTML feature we need
+to render HTML page on Node.js. (Except Canvas ...)
 
-### Ultimate Goal:
-![objectif](http://i.imgur.com/GVPappy.jpg)
+1. Run `npm run test`. This will simply executes unit and components tests. (Use `npm run test:watch` if you want to run tests while developing)
+2. Run `npm run e2e`. This will end to end tests with [Protractor](http://www.protractortest.org/#/) (Works also for React based app)
 
-
-GLHF
-
-
-
-
-
-
-
-
-
-
-
-###
+#### Browser
+The application has been optimized for Chrome Version 54. Also it has been tested for Firefox Version 49, but CORS addons make my browser crash unexpectedly. As a result, I don't ensure compatibility with Firefox.
 
 launch Chrome with CORS disabled under OSX :
-open -n -a /Applications/Google\ Chrome.app --args --user-data-dir="/tmp/chrome_dev_session" --disable-web-security
+
+`open -n -a /Applications/Google\ Chrome.app --args --user-data-dir="/tmp/chrome_dev_session" --disable-web-security`
+
+## Implementation & Technical choices
+
+I choose the Oauth protocol to connect user to the simple app. IMHO, it made more sense to open the auth process to anyone who'd like to connect to his own Mention account information but mine. Also, I decided to store the account_id in the LocalStorage so we don't have to fetch the account_id every time we refresh the page.
+
+## Improvements:
+* Fix bug with React router during sign out
+* Add tests
+* Add mentions pagination by using links
+* Improve GUI
+* CI with Travis and Heroku

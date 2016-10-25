@@ -9,7 +9,7 @@ const all = {
   root: path.normalize(path.resolve(__dirname, '../..')),
 
   // Server port
-  port: process.env.PORT || 9000,
+  port: process.env.PORT || 8888,
 
   // Server IP
   ip: process.env.IP || '127.0.0.1',

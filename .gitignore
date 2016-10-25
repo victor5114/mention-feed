@@ -7,3 +7,6 @@ bundle.js
 
 # Node Debug
 /npm-debug.log
+
+# Build files
+/build
