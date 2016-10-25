@@ -1,12 +1,10 @@
 # mention-feed
-Here's my solution for the Mention coding challenge. Please the following instructions
-to run the project locally. (Not deployed yet).
+Here's my solution for the Mention coding challenge. Please follow the instructions below
+to run the project locally. (Not deployed yet)
 
-I started this project from a redux-starter
-simple app that I previsouly used for different project. It makes use of Babel, Redux, Webpack
-for the main part. It also contains a simple test suite that handles both e2e tests with Protractor and unit test with JSDOM.
+I started this project from a redux-starter simple app that I previously used for different project. It makes use of Babel, Redux, Webpack for the main part. It also contains a simple test suite which manage both e2e tests with Protractor and unit test with JSDOM.
 
-Hope you'll enjoy it
+Hope you'll enjoy the solution !!
 
 ## Install and Set up
 ### Prerequisite
@@ -26,7 +24,7 @@ Hot reload of all src files inside `/src` is activated.
 
 #### Build (Optionnal)
 
-> Ideally we would want to test our compiled files to make sure everything has beend correcly
+> Ideally we would want to test our compiled files to make sure everything has been correctly
 > bundled up. In this particular case, we use a static Node server that serves files through
 > one basic endpoint. However, if PORT is different than 8888, then the callback redirect_uri
 > won't work as expected, so make sure you start the server on port 8888.
@@ -37,7 +35,7 @@ Hot reload of all src files inside `/src` is activated.
 3. Make sure app is displayed nominally.
 
 #### Testing
-No tests were added has although test suite is ready for both e2e and unit/components testing. It's part of main improvement. (See the final section below)
+No tests were added although test suite is ready for both e2e and unit/components testing. It's part of main improvement. (See the final section below)
 Test suite tools :
 [JSDOM](https://github.com/tmpvar/jsdom) / [Mocha](https://mochajs.org/) / [Chai](http://chaijs.com/)
 JSDOM is a Javascript implementation of the DOM and has pretty much all HTML feature we need
