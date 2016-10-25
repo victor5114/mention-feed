@@ -59,8 +59,6 @@ class CallbackHandler extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('MAPSTATE');
-  console.log(state);
   return { errorMessage: state.auth.error };
 }
 
